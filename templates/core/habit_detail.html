@@ -145,11 +145,56 @@
     </section>
 </div>
 
-<!--
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        // Chart disabled for debugging
+        // Re-enabled Chart
+        const ctx = document.getElementById('habitChart').getContext('2d');
+        const habitColor = '{{ habit.color }}';
+
+        // Safety check for data
+        const labels = {{ chart_labels| safe
+    }};
+    const data = {{ chart_data| safe }};
+
+    // Simple validation
+    if (ctx && labels && data) {
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Completed',
+                    data: data,
+                    backgroundColor: habitColor,
+                    borderRadius: 4,
+                    barThickness: 'flex',
+                    maxBarThickness: 20
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        display: false,
+                        beginAtZero: true,
+                        max: 1
+                    },
+                    x: {
+                        grid: { display: false },
+                        ticks: {
+                            color: '#525252',
+                            font: { size: 10 },
+                            maxTicksLimit: 10
+                        }
+                    }
+                }
+            }
+        });
+    }
     });
 </script>
--->
 {% endblock %}
