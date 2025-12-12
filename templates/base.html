@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DailyPush</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <style>
+        body {
+            background-color: #000000;
+            color: #E5E7EB;
+        }
+
+        /* Grid Tooltip */
+        .tooltip {
+            visibility: hidden;
+            position: absolute;
+            z-index: 10;
+        }
+
+        .day-square:hover .tooltip {
+            visibility: visible;
+        }
+    </style>
+</head>
+
+<body class="bg-black text-gray-200 antialiased min-h-screen">
+    <nav
+        class="p-4 border-b border-neutral-900 flex justify-between items-center bg-black/50 backdrop-blur-sm fixed w-full top-0 z-50">
+        <span class="text-xl font-bold tracking-tight">DailyPush</span>
+    </nav>
+    <main class="pt-20 px-4 max-w-5xl mx-auto">
+        {% block content %}{% endblock %}
+    </main>
+    <script>
+        document.body.addEventListener('htmx:configRequest', (event) => {
+            event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+        });
+    </script>
+</body>
+
+</html>
