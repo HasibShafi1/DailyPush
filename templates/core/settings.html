@@ -2,15 +2,16 @@
 
 {% block content %}
 <div class="max-w-xl mx-auto space-y-8 pb-20 pt-10">
-    <h1 class="text-3xl font-bold">Settings</h1>
+    <h1 class="text-3xl font-bold text-neutral-900 dark:text-white">Settings</h1>
 
-    <div class="bg-neutral-950 border border-neutral-900 rounded-xl p-6">
-        <h2 class="text-xl font-bold mb-4">Data Management</h2>
+    <div
+        class="bg-white dark:bg-neutral-950 border border-gray-200 dark:border-neutral-900 rounded-xl p-6 shadow-sm dark:shadow-none">
+        <h2 class="text-xl font-bold mb-4 text-neutral-900 dark:text-white">Data Management</h2>
         <p class="text-neutral-500 mb-6">Export your habit data or clear everything to start fresh.</p>
 
         <div class="space-y-4">
             <button
-                class="w-full flex items-center justify-center gap-2 px-4 py-3 bg-neutral-900 hover:bg-neutral-800 text-white font-semibold rounded-lg transition"
+                class="w-full flex items-center justify-center gap-2 px-4 py-3 bg-neutral-900 hover:bg-neutral-800 text-white dark:bg-white dark:text-black dark:hover:bg-neutral-200 font-semibold rounded-lg transition"
                 onclick="alert('Export functionality coming soon!')">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-5 h-5">
@@ -21,7 +22,7 @@
             </button>
 
             <button
-                class="w-full flex items-center justify-center gap-2 px-4 py-3 bg-red-900/20 hover:bg-red-900/40 text-red-500 font-semibold rounded-lg transition"
+                class="w-full flex items-center justify-center gap-2 px-4 py-3 bg-red-50 hover:bg-red-100 text-red-600 dark:bg-red-900/20 dark:hover:bg-red-900/40 dark:text-red-500 font-semibold rounded-lg transition"
                 onclick="alert('Nuclear option disabled for MVP safety!')">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-5 h-5">
@@ -33,7 +34,7 @@
         </div>
     </div>
 
-    <div class="text-center text-neutral-600 text-sm">
+    <div class="text-center text-neutral-500 text-sm">
         DailyPush v1.0.0 (MVP) <br>
         Open Source Habit Tracker
     </div>

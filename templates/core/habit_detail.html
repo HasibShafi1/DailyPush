@@ -6,13 +6,14 @@
     <header class="flex justify-between items-start">
         <div>
             <a href="{% url 'dashboard' %}"
-                class="text-neutral-500 hover:text-white mb-4 inline-block transition">&larr; Back to Dashboard</a>
-            <h1 class="text-4xl font-bold flex items-center gap-4">
+                class="text-neutral-500 hover:text-black dark:hover:text-white mb-4 inline-block transition">&larr; Back
+                to Dashboard</a>
+            <h1 class="text-4xl font-bold flex items-center gap-4 text-neutral-900 dark:text-gray-100">
                 <span style="color: {{ habit.color }}">{{ habit.icon }}</span>
                 {{ habit.name }}
             </h1>
             {% if habit.description %}
-            <p class="text-neutral-400 mt-2 text-lg">{{ habit.description }}</p>
+            <p class="text-neutral-500 dark:text-neutral-400 mt-2 text-lg">{{ habit.description }}</p>
             {% endif %}
 
             <div class="flex flex-wrap gap-8 mt-8">
@@ -20,12 +21,12 @@
                     <div class="text-xs text-neutral-500 uppercase tracking-widest font-semibold mb-1">Current Streak
                     </div>
                     <div class="text-3xl font-bold" style="color: {{ habit.color }}">{{ current_streak }} <span
-                            class="text-lg text-neutral-600">days</span></div>
+                            class="text-lg text-neutral-400 dark:text-neutral-600">days</span></div>
                 </div>
                 <div>
                     <div class="text-xs text-neutral-500 uppercase tracking-widest font-semibold mb-1">Total Check-ins
                     </div>
-                    <div class="text-3xl font-bold text-white">{{ total_checkins }}</div>
+                    <div class="text-3xl font-bold text-neutral-900 dark:text-white">{{ total_checkins }}</div>
                 </div>
             </div>
         </div>
@@ -35,7 +36,7 @@
             <form action="{% url 'delete_habit' habit.id %}" method="POST"
                 onsubmit="return confirm('Are you sure you want to archive this habit?');">
                 {% csrf_token %}
-                <button type="submit" class="p-2 text-neutral-600 hover:text-red-500 transition" title="Archive Habit">
+                <button type="submit" class="p-2 text-neutral-400 hover:text-red-500 transition" title="Archive Habit">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -48,7 +49,8 @@
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <!-- Chart -->
-        <div class="col-span-1 md:col-span-3 bg-neutral-950 border border-neutral-900 rounded-xl p-6">
+        <div
+            class="col-span-1 md:col-span-3 bg-white dark:bg-neutral-950 border border-gray-200 dark:border-neutral-900 rounded-xl p-6 shadow-sm dark:shadow-none">
             <h3 class="text-xs text-neutral-500 uppercase tracking-widest font-semibold mb-4">Last 30 Days Activity</h3>
             <div class="w-full h-48 relative">
                 <canvas id="habitChart"></canvas>
@@ -69,22 +71,22 @@
     </section>
 
     <!-- Edit Form -->
-    <section class="border-t border-neutral-900 pt-10">
-        <h3 class="text-2xl font-bold mb-6">Settings</h3>
+    <section class="border-t border-gray-200 dark:border-neutral-900 pt-10">
+        <h3 class="text-2xl font-bold mb-6 text-neutral-900 dark:text-white">Settings</h3>
         <form action="{% url 'update_habit' habit.id %}" method="POST" class="max-w-md space-y-6">
             {% csrf_token %}
             <div>
-                <label class="block text-sm font-medium text-neutral-400 mb-2">Habit Name</label>
+                <label class="block text-sm font-medium text-neutral-500 dark:text-neutral-400 mb-2">Habit Name</label>
                 <input type="text" name="name" value="{{ habit.name }}" required
-                    class="w-full bg-black border border-neutral-800 rounded-lg px-4 py-3 text-white focus:border-white focus:outline-none">
+                    class="w-full bg-gray-50 dark:bg-black border border-gray-200 dark:border-neutral-800 rounded-lg px-4 py-3 text-neutral-900 dark:text-white focus:border-neutral-500 dark:focus:border-white focus:outline-none">
             </div>
             <div>
-                <label class="block text-sm font-medium text-neutral-400 mb-2">Description</label>
+                <label class="block text-sm font-medium text-neutral-500 dark:text-neutral-400 mb-2">Description</label>
                 <textarea name="description" rows="3"
-                    class="w-full bg-black border border-neutral-800 rounded-lg px-4 py-3 text-white focus:border-white focus:outline-none">{{ habit.description|default:'' }}</textarea>
+                    class="w-full bg-gray-50 dark:bg-black border border-gray-200 dark:border-neutral-800 rounded-lg px-4 py-3 text-neutral-900 dark:text-white focus:border-neutral-500 dark:focus:border-white focus:outline-none">{{ habit.description|default:'' }}</textarea>
             </div>
             <div>
-                <label class="block text-sm font-medium text-neutral-400 mb-2">Color Theme</label>
+                <label class="block text-sm font-medium text-neutral-500 dark:text-neutral-400 mb-2">Color Theme</label>
                 <div class="flex gap-4 flex-wrap">
                     <label class="cursor-pointer">
                         <input type="radio" name="color" value="#EF4444" {% if habit.color=='#EF4444' %}checked{% endif
@@ -139,7 +141,7 @@
             </div>
 
             <button type="submit"
-                class="px-6 py-3 bg-white text-black font-bold rounded-lg hover:bg-neutral-200 transition">Save
+                class="px-6 py-3 bg-white dark:bg-white text-black font-bold rounded-lg hover:bg-neutral-200 transition border border-gray-200 dark:border-transparent">Save
                 Changes</button>
         </form>
     </section>
